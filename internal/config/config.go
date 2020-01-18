@@ -8,6 +8,11 @@ import (
 	"io/ioutil"
 )
 
+const (
+	defaultServerPort         = 8080
+	defaultJWTExpirationHours = 72
+)
+
 // Config represents an application configuration.
 type Config struct {
 	// the server port. Defaults to 8080
@@ -35,8 +40,8 @@ func (c Config) Validate() error {
 func Load(file string, logger log.Logger) (*Config, error) {
 	// default config
 	c := Config{
-		ServerPort:    8080,
-		JWTExpiration: 72,
+		ServerPort:    defaultServerPort,
+		JWTExpiration: defaultJWTExpirationHours,
 	}
 
 	// load from YAML config file
